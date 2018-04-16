@@ -122,7 +122,7 @@ export default {
       if (this.multiChoose) {
         this.selectedList = selected || this.selected
       } else {
-        this.selectedList = selected ? selected : (this.selected[0] || {})
+        this.selectedList = this.selected[0] || {}
       }
     }
   },
