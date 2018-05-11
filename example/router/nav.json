@@ -78,6 +78,11 @@
         "description": "[vue-slip-delete] 左滑删除"
       },
       {
+        "path": "/datepicker",
+        "name": "DatePicker",
+        "description": "[xm-mui] 日期选择"
+      },
+      {
         "path": "/page",
         "name": "Page",
         "description": "[vue-mobile-page] 上拉分页"
