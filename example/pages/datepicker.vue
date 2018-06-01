@@ -26,33 +26,33 @@
       <p>props</p>
       <pre class="px-font-12">
        props: {
-         limitDays: {
-           type: Number,
-           default: 90
-         },
-         mainColor: {
-           type: String,
-           default: '#753e81'
-         },
-         subColor: {
-           type: String,
-           default: '#ebe2ed'
-         },
-         oneWay: {
-           type: Boolean,
-           default: false
-         },
-         timeStamp: {
-           type: Number | String,
-           default: Date.now()
-         },
-         textArr: {
-           type: Array,
-           default() {
-             return ['入店', '离店']
-           }
-         }
-      }
+          limitDays: {
+            type: Number,
+            default: 90
+          },
+          mainColor: {
+            type: String,
+            default: '#753e81'
+          },
+          subColor: {
+            type: String,
+            default: '#ebe2ed'
+          },
+          isSingle: {
+            type: Boolean,
+            default: false
+          },
+          defaultTimeStamp: {
+            type: Number | String,
+            default: Date.now()
+          },
+          timeLabel: {
+            type: Array,
+            default() {
+              return ['入店', '离店']
+            }
+          }
+       }
       </pre>
     </common-entry>
   </div>
