@@ -6,7 +6,7 @@
       :sub-color="`#ebe2ed`"
       :is-single="false"
       :default-time-stamp="new Date('2018-05-14 14:00').getTime()"
-      :time-label="['label1', 'label2']"
+      :time-label="['label1', 'label23']"
       @date-select="handleDateSelect"
       @select-finish="handleDateChoose"
     />

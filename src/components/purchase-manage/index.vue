@@ -82,6 +82,7 @@
 import Page from 'vue-mobile-page'
 import utils from '../../utils/utils'
 import { TabLabels, LIST_STATE } from './data'
+import Toast from '../toast/index'
 
 const requireComponent = [
   { name: 'Tab', path: 'tab' },
@@ -202,23 +203,25 @@ export default {
         pageSize: this.pageSize,
         bizType: 139
       }
+      let toast
       if (
         (this.currentPage >= this.pages) &&
         (this.pages !== -1)
       ) {
         this.doCallback(this.getList)
-        this.$toast({
-          message: '没有更多了!',
-          duration: 1000
+        toast = Toast({
+          message: '没有更多了!'
         })
         return
       }
       if (this.listData) {
-        this.$toast('加载中...')
+        Toast('加载中...')
       }
       this.get(this.approveUrl, data)
         .then(res => {
-          this.$toast.clear()
+          if (toast) {
+            toast.close()
+          }
           if (this.currentPage === 2) {
             this.pages = Math.ceil(res.totalCount / this.pageSize)
           }

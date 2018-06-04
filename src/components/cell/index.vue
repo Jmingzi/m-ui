@@ -28,14 +28,22 @@
       </div>
     </div>
 
-    <div class="ib-middle">
-      <slot>
-        <span v-if="value">{{ value }}</span>
-        <span class="color-c999" v-else>请选择</span>
-      </slot>
+    <i class="iconfont icon-jinru fr color-c999" v-show="isLink && !loading"/>
+
+    <div class="over-text">
+      <div class="ib-middle">
+        <slot>
+          <span v-if="value">{{ value }}</span>
+          <span class="color-c999" v-else>请选择</span>
+        </slot>
+      </div>
+      <img
+        v-if="loading"
+        class="ib-middle"
+        :src="require('../../assets/loading.gif')"
+        width="20px"
+      >
     </div>
-    <img :src="require('../../assets/loading.gif')" width="20px" v-if="loading">
-    <i class="iconfont icon-jinru ib-middle color-c999" v-show="isLink" v-else/>
   </div>
 </template>
 
@@ -46,7 +54,7 @@ export default {
   props: {
     height: {
       type: Number,
-      default: 45
+      default: 50
     },
     border: {
       type: Boolean,

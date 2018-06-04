@@ -1,13 +1,23 @@
 <template>
-  <div class="m-popup__container-width-mask">
+  <div
+    class="m-popup__container-width-mask scroll-wrap position-f top-0 bottom-0 left-0 right-0 overflow-a"
+    v-show="showMask"
+  >
+    <!--为解决滑动穿透，加一层节点来"吃掉"穿透的滚动-->
+    <div style="height: 200%;" class="empty__child" />
+
+    <m-mask :show="showMask" />
+
     <transition name="zoom-up">
       <div
         v-show="visible"
         :class="`m-popup__wrap ${getWrapperClass} position-f bottom-0 bg-fff left-0 width-100`"
-        @touchmove.prevent=""
-        @click.stop=""
       >
-        <div v-if="!noTitle" :class="`title-wrap ${titleAlign} px-padding-lr10`" class="position-r">
+        <div
+          v-if="!noTitle"
+          :class="`title-wrap ${titleAlign} px-padding-lr10`"
+          class="position-r m-bd-b"
+        >
           <div class="right-close position-a right-0 px-line-45 text-center" @click.stop="close">
             <slot name="icon">
               <i class="iconfont icon-guanbi" />
@@ -18,7 +28,6 @@
         <div
           :class="`content-wrap touch-scroll overflow-a ${noTitle ? 'no-title' : ''}`"
           :style="{height: `${contentHeight}px`}"
-          @touchmove.stop=""
         >
           <div class="content-item-wrap break-all height-100">
             <slot name="content">
@@ -36,8 +45,6 @@
         </div>
       </div>
     </transition>
-
-    <m-mask :show="showMask"/>
   </div>
 </template>
 
@@ -55,10 +62,10 @@ export default {
 
   watch: {
     visible(val) {
+      document.documentElement.style.overflow = val ? 'hidden' : ''
       setTimeout(() => {
         this.showMask = val
       }, 200)
-      return val
     }
   },
 
@@ -140,8 +147,6 @@ export default {
 </script>
 
 <style lang="scss">
-  // @import '../../assets/iconfont/iconfont.css';
-
   .m-popup__wrap {
     transform: translateY(0);
     box-shadow: 0 -1px 6px 0 rgba(0,0,0,0.50);
@@ -154,7 +159,7 @@ export default {
     .title-wrap {
       height: 45px;
       line-height: 45px;
-      border-bottom: 1px #f2f2f2 solid;
+      // border-bottom: 1px #f2f2f2 solid;
 
       .right-close {
         height: 100%;
@@ -181,17 +186,13 @@ export default {
     opacity: 0;
   }
   .zoom-up-enter-to {
-    animation: fadeInUp ease-out .4s;
+    animation: fadeInUp linear .2s .2s;
   }
   .zoom-up-leave-active {
     animation: fadeOutDown ease-out .2s;
   }
   @keyframes fadeInUp {
     from {
-      opacity: 0;
-      transform: translate3d(0, 100%, 0);
-    }
-    50% {
       opacity: 0;
       transform: translate3d(0, 100%, 0);
     }

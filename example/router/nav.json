@@ -3,6 +3,11 @@
     "groupTitle": "安装",
     "navItems": [
       {
+        "path": "/approveselect2",
+        "name": "ApproveSelect2",
+        "description": "[xm-mui] 审批单选择面板"
+      },
+      {
         "path": "/install",
         "name": "快速上手",
         "description": ""
@@ -21,6 +26,11 @@
         "path": "/loading",
         "name": "loading",
         "description": "[xm-mui] 加载指示器"
+      },
+      {
+        "path": "/toast",
+        "name": "toast",
+        "description": "[xm-mui] toast"
       },
       {
         "path": "/cell",
@@ -57,6 +67,11 @@
   {
     "groupTitle": "高级组件",
     "navItems": [
+      {
+        "path": "/search",
+        "name": "Search",
+        "description": "[xm-mui] 搜索输入框"
+      },
       {
         "path": "/numcomputer",
         "name": "NumComputer",
@@ -103,6 +118,11 @@
         "description": "[xm-mui] 上拉面板"
       },
       {
+        "path": "/popupside",
+        "name": "PopupSide",
+        "description": "[xm-mui] 侧边面板"
+      },
+      {
         "path": "/msgbox",
         "name": "MsgBox",
         "description": "[xm-mui] 对话框"
@@ -127,6 +147,11 @@
   {
     "groupTitle": "业务组件",
     "navItems": [
+      {
+        "path": "/cityselectitem",
+        "name": "CitySelectItem",
+        "description": "[xm-mui] 城市选择类目"
+      },
       {
         "path": "/cityselect",
         "name": "CitySelect",
@@ -181,6 +206,21 @@
         "path": "/purchasemanage",
         "name": "PurchaseManage",
         "description": "[xm-mui] 采购管理组件"
+      },
+      {
+        "path": "/submitbar",
+        "name": "SubmitBar",
+        "description": "[xm-mui] 提交栏"
+      }
+    ]
+  },
+  {
+    "groupTitle": "业务组件（差旅）",
+    "navItems": [
+      {
+        "path": "/travelpanel",
+        "name": "TravelPanel",
+        "description": "[xm-mui] 差旅入口面板"
       }
     ]
   }

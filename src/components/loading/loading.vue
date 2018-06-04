@@ -56,7 +56,7 @@ export default {
       top: 50%;
       left: 50%;
       padding: 10px;
-      width: 90px;
+      // width: 90px;
       // min-height: 80px;
       border-radius: 3px;
       background-color: rgba(0,0,0,.6);
@@ -67,8 +67,8 @@ export default {
       font-size: 12px;
     }
     .circular {
-      width:42px;
-      height:42px;
+      width: 32px;
+      height: 32px;
       animation:loading-rotate 2s linear infinite
     }
     .path{

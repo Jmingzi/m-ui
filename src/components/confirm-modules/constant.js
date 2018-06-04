@@ -1,11 +1,13 @@
 export const BILL_METHOD = [
   {
     id: 1,
-    title: '企业管理开票'
+    title: '企业管理开票',
+    value: true
   },
   {
     id: 2,
-    title: '本人开票'
+    title: '本人开票',
+    value: false
   }
 ]
 

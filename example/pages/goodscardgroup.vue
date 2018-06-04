@@ -4,6 +4,7 @@
       <m-goods-card-group
         v-model="isCheck"
         :is-show-checkbox="true"
+        :border="false"
         @on-label-click="onLabelClick"
         @on-click="onClick"
       >
@@ -14,7 +15,7 @@
           v-for="(item, index) in list"
           v-model="childCheckList[item.id]"
           :key="index"
-          :is-checkbox-disable="false"
+          :is-checkbox-disable="true"
           :is-show-checkbox="true"
           :is-abnormal="false"
           content-height="100"
@@ -23,6 +24,8 @@
           :spec="item.spec"
           :name="item.name"
           :border="true"
+          :checkbox-icon-type="2"
+          card-bg="#f7f8f9"
           @on-click="onClickCard"
         >
           <p slot="right">right info x 123</p>

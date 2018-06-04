@@ -5,7 +5,7 @@
     @click.stop="$emit('tap')"
     @touchmove.prevent=""
   >
-    <div class="width-100 height-100">
+    <div v-if="$slots.default" class="width-100 height-100">
       <slot/>
     </div>
   </div>

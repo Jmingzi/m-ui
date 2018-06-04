@@ -3,9 +3,8 @@
     <div class="mg--10">
       <m-confirm-order
         ref="modules"
-        :get="get"
-        :post="post"
         biz-type="22"
+        approve-title="关联采购单"
         :approve-current="selectApprove"
         :bill-method-current="billMethod"
         :bill-type-current="billType"
@@ -17,6 +16,7 @@
         :freight-money="33"
         :total-money="4999"
         :is-show-approve-cell="true"
+        :welfare-max-use-num="20"
         @select-approve="item => selectApprove = item"
         @cancel-select-approve="selectApprove = null"
         @change-open-bill="val => isOpenBill = val"
@@ -37,7 +37,7 @@
 <script>
 import CommonEntry from './commonEntry'
 import MConfirmOrder from '../../src/components/confirm-modules/index'
-import { get, post } from '../assets/http'
+// import { get, post } from '../assets/http'
 
 export default {
   name: 'cell',
@@ -60,13 +60,6 @@ export default {
   },
 
   methods: {
-    get(url, params) {
-      return get(url, params)
-    },
-    post(url, params) {
-      return post(url, params)
-    },
-
     getModulesData() {
       console.log(this.$refs.modules.getModulesData())
     }

@@ -5,7 +5,7 @@
         v-model="isCheck"
         :is-checkbox-disable="false"
         :is-show-checkbox="true"
-        :is-abnormal="false"
+        :is-abnormal="true"
         content-height="100"
         card-bg="#f7f8f9"
         :price="10"

@@ -15,6 +15,11 @@
       <p class="address__empty" v-if="!commonList || commonList.length === 0">{{ emptyText }}</p>
       <cell-group v-else>
         <cell
+          v-if="cancelText"
+          :title="cancelText"
+          @click="onSelect()"
+        />
+        <cell
           v-for="item in commonList"
           class="address-list__item"
           :style="getColorMain(isCurrent(item))"
@@ -23,7 +28,7 @@
         >
           <slot :row="item" />
           <icon
-            v-show="isCurrent(item)"
+            v-show="hasLink && isCurrent(item)"
             slot="right-icon"
             name="success"
             class="van-cell__right-icon"
@@ -101,6 +106,11 @@ export default {
       default() {
         return null
       }
+    },
+    cancelText: String,
+    hasLink: {
+      type: Boolean,
+      default: true
     }
   },
 
@@ -118,16 +128,18 @@ export default {
     },
 
     onSelect(item) {
-      this.$emit('common-select', item)
       this.$emit('toggle-show', false)
+      if (item) {
+        this.$emit('common-select', item)
+      } else {
+        this.$emit('cancel-select')
+      }
     }
   }
 }
 </script>
 
 <style lang="scss">
-  // @import '../../assets/iconfont/iconfont.css';
-
   .address__empty {
     text-align: center;
     padding-top: 80px;

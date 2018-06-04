@@ -105,6 +105,6 @@ export default {
   }
   .tab__line-color {
     width: 60px;
-    height: 1px;
+    height: 2px;
   }
 </style>

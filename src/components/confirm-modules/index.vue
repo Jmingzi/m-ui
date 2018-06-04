@@ -17,6 +17,47 @@
       模块信息加载中
     </p>
 
+    <template v-if="hasApproveModule">
+      <cell
+        :label="approveTitle"
+        :loading="loading.approve"
+        @on-click="getApprove"
+      >
+        <template class="ib-middle" v-if="approveCurrent">
+          <span>{{ approveCurrent.title }}</span>
+          <span class="color-c999" v-show="approveCurrent.reason">
+            ({{ approveCurrent.reason }})
+          </span>
+        </template>
+      </cell>
+      <common-select
+        :title="approveTitle"
+        class="select-approve"
+        :visible="showApprovePopup"
+        :confirm-show="false"
+        :cancel-text="`取消${approveTitle}`"
+        :common-list="approveList || []"
+        :common-current="approveCurrent"
+        :main-color="mainColor"
+        :has-link="false"
+        @toggle-show="showApprovePopup = false"
+        @common-select="item => $emit('select-approve', item)"
+        @cancel-select="$emit('cancel-select-approve')"
+      >
+        <template slot-scope="scope">
+          <p>
+            <span class="fr m-bd px-padding-lr5 color-c666" @click.stop="openApproveDetail(scope.row)">查看详情</span>
+            <span>{{ scope.row.title }}</span>
+          </p>
+          <p
+            :class="{ 'color-c999': !approveCurrent || scope.row.id !== approveCurrent.id }"
+          >
+            {{ scope.row.reason }}
+          </p>
+        </template>
+      </common-select>
+    </template>
+
     <template v-if="hasPayWayModule">
       <cell
         label="支付方式"
@@ -44,42 +85,6 @@
       </common-select>
     </template>
 
-    <template v-if="hasApproveModule && isShowApproveCell">
-      <cell
-        label="选择审批单"
-        :loading="loading.approve"
-        @on-click="getApprove"
-      >
-        <template class="ib-middle" v-if="approveCurrent">
-          <span>{{ approveCurrent.title }}</span>
-          <span class="color-c999" v-show="approveCurrent.reason">
-            ({{ approveCurrent.reason }})
-          </span>
-        </template>
-      </cell>
-      <common-select
-        title="选择审批单"
-        class="select-approve"
-        :visible="showApprovePopup"
-        confirm-text="取消关联审批单"
-        :common-list="approveList || []"
-        :common-current="approveCurrent"
-        :main-color="mainColor"
-        @toggle-show="showApprovePopup = false"
-        @common-select="item => $emit('select-approve', item)"
-        @common-btn="$emit('cancel-select-approve')"
-      >
-        <template slot-scope="scope">
-          <p>{{ scope.row.title }}</p>
-          <p
-            :class="{ 'color-c999': !approveCurrent || scope.row.id !== approveCurrent.id }"
-          >
-            {{ scope.row.reason }}
-          </p>
-        </template>
-      </common-select>
-    </template>
-
     <template v-if="hasBillModule">
       <cell
         v-if="payWay && payWay.id === 3"
@@ -90,6 +95,7 @@
       >
         <m-switch
           :value="isOpenBill"
+          :main-color="mainColor"
           @change="val => $emit('change-open-bill', val)"
         />
       </cell>
@@ -163,7 +169,7 @@
 
     <template v-if="hasWelfareModule">
       <cell
-        label="积分支付"
+        label="福利积分"
         label-desc="每100积分可抵扣1.00元"
         has-info
         :is-link="false"
@@ -171,6 +177,7 @@
       >
         <m-switch
           :value="isOpenWelfare"
+          :main-color="mainColor"
           @change="val => $emit('change-open-welfare', val)"
         />
       </cell>
@@ -178,12 +185,13 @@
         v-if="isOpenWelfare"
         :is-link="false"
         label="使用数量"
+        @on-click="noon"
       >
         <input
           type="tel"
           ref="welfareInput"
           class="text-right"
-          :placeholder="welfare ? `剩余可用${welfare.amount}积分` : '加载中'"
+          :placeholder="welfare ? `剩余可用${welfare.restAmount}积分` : '加载中'"
           :value="welfareUseNum"
           @input="handleInputWelfare"
         >
@@ -191,9 +199,13 @@
     </template>
 
     <div v-if="hasMoneySum" class="px-padding-10 bg-fff px-margin-t10">
+      <p class="px-font-16">
+        <span class="font-bold color-c000">订单总金额：</span>
+        <span class="color-red fr">¥ {{ totalMoney | formatPrice }}</span>
+      </p>
       <p>
         <span>商品金额</span>
-        <span class="color-red fr">¥ {{ skuMoney | formatPrice }}</span>
+        <span class="color-c999 fr">¥ {{ skuMoney | formatPrice }}</span>
       </p>
       <p>
         <span class="ib-middle">运费</span>
@@ -201,11 +213,11 @@
           class="iconfont icon-shuoming ib-middle color-info"
           @click="freightDesc"
         />
-        <span class="color-red fr">+ ¥ {{ freightMoney | formatPrice }}</span>
+        <span class="color-c999 fr">+ ¥ {{ freightMoney | formatPrice }}</span>
       </p>
-      <p class="text-right">
-        <span class="font-bold color-c000">总价：</span>
-        <span class="color-red">¥ {{ totalMoney | formatPrice }}</span>
+      <p v-if="hasWelfareModule && isOpenWelfare && welfareUseNum">
+        <span class="ib-middle">积分抵扣</span>
+        <span class="color-c999 fr">- ¥ {{ welfareUseNum | formatPrice }}({{ welfareUseNum }}积分)</span>
       </p>
     </div>
   </div>
@@ -218,6 +230,7 @@ import MMessage from '../message'
 import Cell from '../cell'
 import utils from '../../utils/utils'
 import { BILL_METHOD, BILL_TYPE_LIST, PAY_WAY } from './constant'
+import { get, post } from './http'
 const baseUrl = `//app.e.uban360.${utils.online ? 'com' : 'net'}`
 
 export default {
@@ -237,14 +250,6 @@ export default {
   },
 
   props: {
-    get: {
-      type: Function,
-      required: true
-    },
-    post: {
-      type: Function,
-      required: true
-    },
     bizType: {
       type: [Number, String],
       required: true
@@ -264,7 +269,9 @@ export default {
     isShowApproveCell: Boolean,
     skuMoney: Number,
     freightMoney: Number,
-    totalMoney: Number
+    totalMoney: Number,
+    welfareMaxUseNum: Number,
+    approveTitle: String
   },
 
   data() {
@@ -291,6 +298,7 @@ export default {
         welfare: false
       },
 
+      showWelfareCell: true,
       showPayWayPopup: false,
       showApprovePopup: false,
       showBillMethodPopup: false,
@@ -309,7 +317,9 @@ export default {
     },
 
     hasApproveModule() {
-      return this.config ? this.config.indexOf(4) > -1 : false
+      return this.config
+        ? this.config.indexOf(4) > -1 && this.isShowApproveCell
+        : false
     },
 
     hasBillModule() {
@@ -317,7 +327,9 @@ export default {
     },
 
     hasWelfareModule() {
-      return this.config ? this.config.indexOf(11) > -1 : false
+      return this.config
+        ? this.config.indexOf(11) > -1 && this.showWelfareCell
+        : false
     },
 
     hasMoneySum() {
@@ -347,17 +359,9 @@ export default {
 
     payWay: {
       deep: true,
-      handler(item) {
-        if (item.id === 1) {
-          this.$emit('change-open-bill', true)
-          this.showBillMethodCell = false
-        } else if (item.id === 2) {
-          this.$emit('change-open-bill', true)
-          this.showBillMethodCell = true
-        } else {
-          this.$emit('change-open-bill', false)
-          this.showBillMethodCell = false
-        }
+      handler() {
+        this.initBill(false)
+        this.initWelfare()
       }
     },
 
@@ -365,50 +369,38 @@ export default {
       if (!val) {
         this.showApprovePopup = true
       }
+    },
+
+    welfareUseNum(num) {
+      // 通知业务num变化
+      this.$emit('welfare-num-change', num)
+    },
+
+    approveCurrent(val) {
+      if (val === null && !this.payWayList.find(x => x.id === 3)) {
+        this.payWayList.push(PAY_WAY[2])
+      }
     }
   },
 
   created() {
-    // 账户信息
-    this.getScopeInfo().then(res => {
-      const { balance, buyer, subscription } = res
-      let payWayList = []
-
-      if (!subscription || !buyer) {
-        payWayList = [PAY_WAY[2]]
-      } else if (!balance) {
-        payWayList = PAY_WAY.slice(1, 3)
-      } else {
-        payWayList = PAY_WAY.slice()
-      }
-
-      if (
-        !this.payWay ||
-        payWayList.every(x => x.id !== this.payWay.id)
-      ) {
-        this.$emit('select-pay-way', payWayList[0])
-      }
-      this.payWayList = payWayList
-    })
     // 模块配置
     this.getConfig().then(() => {
+      if (this.hasPayWayModule) {
+        this.initPay()
+      }
       if (this.hasBillModule) {
-        // 发票模块id为10
-        this.getBillList()
-        // 初始化开票方式等
-        if (!this.billMethodCurrent) {
-          this.$emit('select-bill-method', BILL_METHOD[0])
-        }
-        if (!this.billTypeCurrent) {
-          this.$emit('select-bill-type', BILL_TYPE_LIST[0])
-        }
+        this.initBill()
+      }
+      if (this.hasWelfareModule) {
+        this.initWelfare()
       }
     })
   },
 
   methods: {
     getConfig() {
-      return this.get(this.urlConfig, { bizType: this.bizType })
+      return get(this.urlConfig, { bizType: this.bizType })
         .then(res => {
           this.config = res
           return res
@@ -417,7 +409,7 @@ export default {
     },
 
     getScopeInfo() {
-      return this.post(this.urlScope, { bizType: this.bizType })
+      return post(this.urlScope, { bizType: this.bizType })
         .then(res => {
           this.scopeInfo = res
           // this.scopeInfo = {
@@ -433,7 +425,7 @@ export default {
 
     getApprove() {
       this.loading.approve = true
-      this.get(this.urlApprove, { bizType: this.bizType })
+      get(this.urlApprove, { bizType: this.bizType })
         .then(res => {
           this.approveList = res.map(x => ({ ...x, id: x.approveId }))
           this.loading.approve = false
@@ -443,7 +435,7 @@ export default {
 
     getBillList() {
       this.loading.bill = true
-      this.get(this.urlBill)
+      get(this.urlBill)
         .then(res => {
           this.billList = res.map(x => ({ ...x, id: x.titleId }))
           this.loading.bill = false
@@ -456,18 +448,104 @@ export default {
 
     getWelfare() {
       this.loading.welfare = true
-      this.get(this.urlWelfare)
+      get(this.urlWelfare)
         .then(res => {
-          if (res.amount === 0) {
+          let data = { ...res }
+          if (data.restAmount < 0) {
             // this.$box.alert('剩余可用积分数量为0').then(() => {
             //   this.$emit('change-open-welfare', false)
             // })
+            data.restAmount = 0
+            data.originRestAmount = res.restAmount
           }
-          // res.amount = 10
-          this.welfare = res
+          this.welfare = data
           this.loading.welfare = false
         })
         .catch(error => this.$emit('error-callback', error))
+    },
+
+    initPay() {
+      // 账户信息
+      this.getScopeInfo().then(res => {
+        const { balance, buyer, subscription } = res
+        // const buyer = false
+        // const balance = false
+        // const subscription = true
+
+        let payWayList = []
+
+        if (!subscription || !buyer) {
+          payWayList = [PAY_WAY[2]]
+        } else if (!balance) {
+          if (this.approveCurrent) {
+            payWayList = [PAY_WAY[1]]
+          } else {
+            payWayList = PAY_WAY.slice(1, 3)
+          }
+        } else {
+          payWayList = PAY_WAY.slice()
+        }
+
+        // 如果关联了审批单，没有个人支付
+        if (this.approveCurrent) {
+          payWayList = payWayList.filter(x => x.id !== 3)
+        }
+
+        if (
+          !this.payWay ||
+          payWayList.every(x => x.id !== this.payWay.id)
+        ) {
+          this.$emit('select-pay-way', payWayList[0])
+        }
+        this.payWayList = payWayList
+      })
+    },
+
+    initBill(isNeedRequest = true) {
+      // 根据支付方式来控制发票模块的显示与隐藏
+      if (this.payWay) {
+        const { id } = this.payWay
+        if (id === 1 || id === 3) {
+          this.showBillMethodCell = false
+        } else {
+          this.showBillMethodCell = true
+        }
+        this.$emit('change-open-bill', id !== 3)
+      }
+
+      if (isNeedRequest) {
+        this.getBillList()
+      }
+      // 初始化开票方式等
+      if (!this.billMethodCurrent) {
+        this.$emit('select-bill-method', BILL_METHOD[0])
+      }
+      if (!this.billTypeCurrent) {
+        this.$emit('select-bill-type', BILL_TYPE_LIST[0])
+      }
+    },
+
+    initWelfare() {
+      // 根据支付方式来控制积分模块的显示与隐藏
+      if (this.payWay) {
+        const { id } = this.payWay
+        if (id === 1 || id === 2) {
+          this.toggleWelfareCell(false)
+        } else {
+          this.toggleWelfareCell(true)
+        }
+
+        if (this.isOpenWelfare && id === 3) {
+          this.$nextTick(this.getWelfare)
+        }
+      }
+    },
+
+    // 暴露给外部重置调用
+    reInitWelfare() {
+      this.welfareUseNum = ''
+      this.$refs.welfareInput.value = ''
+      this.getWelfare()
     },
 
     toSelectBill() {
@@ -517,6 +595,7 @@ export default {
         billMethod: this.billMethodCurrent,
         billType: this.billTypeCurrent,
         bill: this.billCurrent,
+        billList: this.billList,
         approve: this.approveCurrent,
         isUseWelfare: this.isOpenWelfare,
         welfareNum: this.welfareUseNum ? Number(this.welfareUseNum) : 0,
@@ -527,17 +606,46 @@ export default {
     handleInputWelfare(e) {
       const val = e.target.value
       const input = this.$refs.welfareInput
+      const maxNum = this.welfareMaxUseNum
+        ? Math.min(this.welfareMaxUseNum, this.welfare.restAmount)
+        : this.welfare.restAmount
+
       if (val === '') {
         this.welfareUseNum = ''
-      } else if (
-        !/^\d+$/.test(val) ||
-        Number(val) > this.welfare.amount
-      ) {
+      } else if (!/^\d+$/.test(val)) {
+        // 不合法的数字
         input.value = this.welfareUseNum
+      } else if (Number(val) > maxNum) {
+        // 大于最大值
+        input.value = maxNum
+        this.welfareUseNum = maxNum
       } else {
         this.welfareUseNum = Number(val)
         input.value = this.welfareUseNum
       }
+    },
+
+    toggleWelfareCell(show) {
+      this.showWelfareCell = show
+      if (!show) {
+        this.welfareUseNum = ''
+        this.$emit('change-open-welfare', false)
+      } else {
+        this.$emit('change-open-welfare', true)
+      }
+    },
+
+    openApproveDetail(item) {
+      console.log(`${window.AppInfo.data.approveUrl}#/detail/${item.id}`)
+      window.JSBridge.native('openurl', {
+        url: `${window.AppInfo.data.approveUrl}#/detail/${item.id}`,
+        noDefaultMenu: 1,
+        cookie: 1
+      })
+    },
+
+    noon() {
+
     }
   }
 }
@@ -553,11 +661,6 @@ export default {
       border: none;
       margin: 0;
       padding: 0;
-    }
-    .select-approve .m-popup__wrap .btn-wrap {
-      color: #333333;
-      font-size: 14px !important;
-      background-color: #f7f8f9 !important;
     }
     .color-red {
       color: red;

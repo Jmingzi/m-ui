@@ -1,6 +1,6 @@
 <template>
   <div class="m-empty__wrap width-100 text-center px-padding-t30">
-    <div class="px-width-90 px-height-80 margin-auto">
+    <div class="px-width-90 px-height-90 margin-auto">
       <img
         v-if="iconImg"
         :src="iconImg"

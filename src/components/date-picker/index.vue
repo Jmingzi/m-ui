@@ -440,8 +440,8 @@ div {
   box-sizing: border-box;
 }
 
-@function px2rem($px) {
-  @return ($px / 37.5) * 1rem
+@function px2vw($px) {
+  @return $px / 3.75 * 1vw
 }
 
 .position-f {
@@ -516,7 +516,7 @@ div {
 
 .date-picker__row-1 {
   &:last-child {
-    width: px2rem(40);
+    width: px2vw(40);
     padding-right: 0;
   }
 }
@@ -551,7 +551,7 @@ div {
 
 .date-picker__row-1,
 .date-picker__day-cell{
-  width: px2rem(50);
+  width: px2vw(50);
   height: 40px;
   line-height: 40px;
   padding-right: 10px;
@@ -583,7 +583,7 @@ div {
       margin-bottom: 20px;
 
       &.lastCol {
-        width: px2rem(40);
+        width: px2vw(40);
         padding-right: 0;
       }
 

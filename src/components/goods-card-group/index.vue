@@ -1,7 +1,10 @@
 <template>
   <div class="m-goods-card-group" @click="$emit('on-click')">
     <div
-      class="m-goods-card-group__title m-bd-b overflow-h px-padding-lr10 bg-fff"
+      class="m-goods-card-group__title overflow-h px-padding-lr10 bg-fff"
+      :class="{
+        'm-bd-b': border
+      }"
     >
       <div v-if="$slots.info" class="fr m-goods-card-group__title-info">
         <slot name="info" />
@@ -9,11 +12,18 @@
       <div class="m-goods-card-group__label font-0">
         <div v-if="isShowCheckbox" class="ib-middle px-width-30">
           <checkbox
+            check-icon="icon-quanxuan"
+            checked-icon="icon-quanxuancopy"
+            radius="circle"
             :value="isChecked"
             @change="onCheckLabel"
           />
         </div>
-        <div v-if="$slots.label" class="px-font-14 ib-middle" @click.stop="$emit('on-label-click')">
+        <div
+          v-if="$slots.label"
+          class="px-font-14 ib-middle color-c262"
+          @click.stop="$emit('on-label-click')"
+        >
           <slot name="label" />
           <icon class="ib-middle color-ccc px-font-12" name="arrow"/>
         </div>
@@ -26,7 +36,10 @@
 
     <div
       v-if="$slots.bottom"
-      class="m-goods-card-group__bottom text-right m-bd-t bg-fff"
+      class="m-goods-card-group__bottom text-right bg-fff"
+      :class="{
+        'm-bd-t': border
+      }"
     >
       <slot name="bottom" />
     </div>
@@ -51,7 +64,11 @@ export default {
       type: Boolean,
       default: false
     },
-    isChecked: Boolean
+    isChecked: Boolean,
+    border: {
+      type: Boolean,
+      default: true
+    }
   },
 
   data() {
@@ -81,11 +98,9 @@ export default {
 </script>
 
 <style lang="scss">
-  .m-goods-card-group {
-
-  }
+  .color-c262 { color: #262a30; }
   .m-goods-card-group__title,
   .m-goods-card-group__bottom {
-    line-height: 40px;
+    line-height: 50px;
   }
 </style>

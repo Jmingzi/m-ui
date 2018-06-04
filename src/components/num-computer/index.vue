@@ -18,6 +18,7 @@
         @click.stop=""
         @input="changeNum"
         @blur="checkNum"
+        @focus="handleFocus"
         :value="num"
       >
     </div>
@@ -48,7 +49,10 @@ export default {
     },
 
     isInputEvent(event) {
-      return event.constructor && event.constructor.name === 'InputEvent'
+      if (event.constructor) {
+        return /Event/.test(event.constructor.name)
+      }
+      return false
     },
 
     checkNum(e) {
@@ -107,6 +111,11 @@ export default {
       // @param val {Number} 更新前的数量
       this.$emit('input', num)
       this.$emit('on-change', num, this.value)
+    },
+
+    handleFocus() {
+      this.$refs.input.scrollIntoView(true)
+      // this.$refs.input.scrollIntoViewIfNeeded(true)
     }
   },
 
@@ -133,6 +142,8 @@ export default {
 
 <style lang="scss">
   .num-compute {
+    border-radius: 2px;
+    overflow: hidden;
     &.input-db {
       border-top: 1px #f2f2f2 solid;
       border-bottom: 1px #f2f2f2 solid;

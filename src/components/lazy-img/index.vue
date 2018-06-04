@@ -19,17 +19,24 @@ export default {
     },
     throttleTime: {
       type: Number,
-      default: 1000
+      default: 300
     },
     loadType: {
       type: String,
       default: 'img'
-    }
+    },
+    scrollWrapSelector: String
   },
 
   data() {
     return {
-      moveEventSwitch: true
+      moveEventSwitch: true,
+      wrapElem: null,
+      loadFun: throttle(
+        () => { this.moveEventSwitch && this.start() },
+        this.throttleTime,
+        { leading: true, trailing: true }
+      )
     }
   },
 
@@ -44,10 +51,15 @@ export default {
   },
 
   mounted() {
-    const imgWrap = this.$refs.lazyImgWrap
-    imgWrap.addEventListener('touchmove', throttle(() => {
-      this.moveEventSwitch && this.start()
-    }, this.throttleTime, { leading: true, trailing: true }))
+    this.wrapElem = this.scrollWrapSelector
+      ? document.querySelector(this.scrollWrapSelector)
+      : window
+    // const imgWrap = this.$refs.lazyImgWrap
+    this.wrapElem.addEventListener('scroll', this.loadFun)
+  },
+
+  beforeDestroy() {
+    this.wrapElem.removeEventListener('scroll', this.loadFun)
   },
 
   methods: {
