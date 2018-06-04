@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Cell, CellGroup, NavBar, Search, Icon, Dialog } from 'vant'
+import { Cell, CellGroup, NavBar, Search, Icon, Dialog, Toast } from 'vant'
 import App from './app.vue'
 import './assets/style/demo.scss'
 import './assets/iconfont/iconfont.css'
@@ -17,6 +17,7 @@ Vue.use(Icon)
 // Vue.use(Dialog)
 Vue.use(Cell).use(CellGroup)
 Vue.prototype.$dialog = Dialog
+Vue.prototype.$toast = Toast
 Vue.prototype.$box = Box
 
 router.afterEach((to) => {

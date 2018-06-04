@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import DatePicker from '../../src/components/datePicker/index'
+import DatePicker from '../../src/components/date-picker/index'
 import CommonEntry from './commonEntry'
 
 export default {

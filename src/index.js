@@ -12,7 +12,7 @@ import CitySelect from './components/city-select'
 import CommonSelect from './components/common-select'
 import ConfirmModules from './components/confirm-modules'
 import ConfirmOrder from './components/confirm-order'
-import DatePicker from './components/datePicker'
+import DatePicker from './components/date-picker'
 import Empty from './components/empty'
 import GoodsCard from './components/goods-card'
 import GoodsCardGroup from './components/goods-card-group'
@@ -23,6 +23,7 @@ import Message from './components/message'
 import Msgbox from './components/msgbox'
 import NumComputer from './components/num-computer'
 import Popup from './components/popup'
+import PurchaseManage from './components/purchase-manage'
 import Switch from './components/switch'
 import Tab from './components/tab'
 import TagSelect from './components/tag-select'
@@ -52,6 +53,7 @@ const components = [
   Msgbox,
   NumComputer,
   Popup,
+  PurchaseManage,
   Switch,
   Tab,
   TagSelect,

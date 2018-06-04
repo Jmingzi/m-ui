@@ -176,6 +176,11 @@
         "path": "/confirmmodules",
         "name": "ConfirmModules",
         "description": "[xm-mui] 确认订单模块"
+      },
+      {
+        "path": "/purchasemanage",
+        "name": "PurchaseManage",
+        "description": "[xm-mui] 采购管理组件"
       }
     ]
   }
