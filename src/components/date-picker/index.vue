@@ -205,20 +205,35 @@ export default {
 
     // 根据search传递的defaultTimeStamp 生成起始时间 、 结束时间
     setDate() {
-      const { year, month, date } = this.formatTime(this.defaultTimeStamp)
-      const endDate = this.formatTime(this.defaultTimeStamp + ((this.limitDays - 1) * 24 * 3600 * 1000))
-      const toDate = this.formatTime(this.defaultTimeStamp + 24 * 3600 * 1000)
-      this.currentDate = { year, month, date }
-      this.fromDate = { year, month, date }
-      this.endDate = {
-        year: endDate.year,
-        month: endDate.month,
-        date: endDate.date
-      }
-      this.toDate = {
-        year: this.isSingle ? year : toDate.year,
-        month: this.isSingle ? month : toDate.month,
-        date: this.isSingle ? date : toDate.date
+      console.log(this.isSingle)
+      if (this.isSingle) {
+        const { year, month, date } = this.formatTime(this.defaultTimeStamp)
+        const endDate = this.formatTime(this.defaultTimeStamp + ((this.limitDays - 1) * 24 * 3600 * 1000))
+        this.currentDate = { year, month, date }
+        this.fromDate = { year, month, date }
+        this.endDate = {
+          year: endDate.year,
+          month: endDate.month,
+          date: endDate.date
+        }
+        this.toDate = { year, month, date }
+      } else {
+        console.log(1)
+        const { year, month, date } = this.formatTime(this.defaultTimeStamp[0])
+        const endDate = this.formatTime(this.defaultTimeStamp[0] + ((this.limitDays - 1) * 24 * 3600 * 1000))
+        const toDate = this.formatTime(this.defaultTimeStamp[1])
+        this.currentDate = { year, month, date }
+        this.fromDate = { year, month, date }
+        this.endDate = {
+          year: endDate.year,
+          month: endDate.month,
+          date: endDate.date
+        }
+        this.toDate = {
+          year: toDate.year,
+          month: toDate.month,
+          date: toDate.date
+        }
       }
     },
 

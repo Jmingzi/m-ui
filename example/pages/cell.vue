@@ -3,6 +3,7 @@
     <m-cell
       label="单元格"
       value="value"
+      link-color="#f00"
     />
     <p>slot</p>
     <pre>
@@ -28,6 +29,10 @@
         isLink: {
           type: Boolean,
           default: true
+        },
+        linkColor: {
+          type: String,
+          default: ''
         },
         hasInfo: Boolean,
         loading: Boolean,

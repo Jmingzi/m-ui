@@ -33,7 +33,7 @@
     <div class="over-text">
       <div class="ib-middle">
         <slot>
-          <span v-if="value">{{ value }}</span>
+          <span :style="{ color: linkColor }" v-if="value">{{ value }}</span>
           <span class="color-c999" v-else>请选择</span>
         </slot>
       </div>
@@ -63,6 +63,10 @@ export default {
     isLink: {
       type: Boolean,
       default: true
+    },
+    linkColor: {
+      type: String,
+      default: ''
     },
     hasInfo: Boolean,
     loading: Boolean,
