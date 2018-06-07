@@ -126,7 +126,7 @@ export default {
       default: false
     },
     defaultTimeStamp: {
-      type: Number | String,
+      type: [Number, String, Array],
       default: Date.now()
     },
     timeLabel: {
@@ -205,11 +205,11 @@ export default {
 
     // 根据search传递的defaultTimeStamp 生成起始时间 、 结束时间
     setDate() {
-      console.log(this.isSingle)
+      const today = Date.now()
       if (this.isSingle) {
         const { year, month, date } = this.formatTime(this.defaultTimeStamp)
-        const endDate = this.formatTime(this.defaultTimeStamp + ((this.limitDays - 1) * 24 * 3600 * 1000))
-        this.currentDate = { year, month, date }
+        const endDate = this.formatTime(today + ((this.limitDays - 1) * 24 * 3600 * 1000))
+        this.currentDate = this.formatTime(today)
         this.fromDate = { year, month, date }
         this.endDate = {
           year: endDate.year,
@@ -218,11 +218,10 @@ export default {
         }
         this.toDate = { year, month, date }
       } else {
-        console.log(1)
         const { year, month, date } = this.formatTime(this.defaultTimeStamp[0])
-        const endDate = this.formatTime(this.defaultTimeStamp[0] + ((this.limitDays - 1) * 24 * 3600 * 1000))
+        const endDate = this.formatTime(today + ((this.limitDays - 1) * 24 * 3600 * 1000))
         const toDate = this.formatTime(this.defaultTimeStamp[1])
-        this.currentDate = { year, month, date }
+        this.currentDate = this.formatTime(today)
         this.fromDate = { year, month, date }
         this.endDate = {
           year: endDate.year,
@@ -450,199 +449,199 @@ export default {
 </script>
 
 <style lang='scss' scoped>
-html,
-div {
-  box-sizing: border-box;
-}
+  html,
+  div {
+    box-sizing: border-box;
+  }
 
-@function px2vw($px) {
-  @return $px / 3.75 * 1vw
-}
+  @function px2vw($px) {
+    @return $px / 3.75 * 1vw
+  }
 
-.position-f {
-  position: fixed;
-}
+  .position-f {
+    position: fixed;
+  }
 
-.position-r {
-  position: relative
-}
+  .position-r {
+    position: relative
+  }
 
-.position-a {
-  position: absolute;
-}
-
-.top-0 {
-  top: 0;
-}
-
-.bottom-0 {
-  bottom: 0;
-}
-
-.left-0 {
-  left: 0;
-}
-
-.width-100 {
-  width: 100%;
-}
-
-.height-100 {
-  height: 100%;
-}
-
-.bg-fff {
-  background: #fff;
-}
-
-.m-bd-b {
-  &:before {
-    border: 1px solid #cecece;
-    border-width: 0 0 1px 0;
-    border-radius: 0;
-    z-index: 1;
-    content: '';
+  .position-a {
     position: absolute;
+  }
+
+  .top-0 {
     top: 0;
+  }
+
+  .bottom-0 {
+    bottom: 0;
+  }
+
+  .left-0 {
     left: 0;
-    width: 200%;
-    height: 200%;
-    transform: scale(0.5, 0.5);
-    pointer-events: none;
-    transform-origin: 0 0;
   }
-}
 
-.text-center {
-  text-align: center;
-}
-
-.color-262 {
-  color: #262A30;
-}
-
-.z-index-10 {
-  z-index: 10;
-}
-
-.date-picker__wrapper {
-  top: 70px;
-}
-
-.date-picker__row-1 {
-  &:last-child {
-    width: px2vw(40);
-    padding-right: 0;
+  .width-100 {
+    width: 100%;
   }
-}
 
-.px-font-12 {
-  font-size: 12px;
-}
+  .height-100 {
+    height: 100%;
+  }
 
-.px-font-14 {
-  font-size: 14px;
-}
+  .bg-fff {
+    background: #fff;
+  }
 
-.px-font-16 {
-  font-size: 16px;
-}
+  .m-bd-b {
+    &:before {
+      border: 1px solid #cecece;
+      border-width: 0 0 1px 0;
+      border-radius: 0;
+      z-index: 1;
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      transform: scale(0.5, 0.5);
+      pointer-events: none;
+      transform-origin: 0 0;
+    }
+  }
 
-.px-line-20 {
-  line-height: 20px;
-}
+  .text-center {
+    text-align: center;
+  }
 
-.overflow-h {
-  overflow: hidden;
-}
+  .color-262 {
+    color: #262A30;
+  }
 
-.overflow-a {
-  overflow: auto;
-}
+  .z-index-10 {
+    z-index: 10;
+  }
 
-.fl {
-  float: left;
-}
+  .date-picker__wrapper {
+    top: 70px;
+  }
 
-.date-picker__row-1,
-.date-picker__day-cell{
-  width: px2vw(50);
-  height: 40px;
-  line-height: 40px;
-  padding-right: 10px;
-  text-align: center;
-}
+  .date-picker__row-1 {
+    &:last-child {
+      width: px2vw(40);
+      padding-right: 0;
+    }
+  }
 
-.date-picker__fixed-header {
-  padding: 10px 4.5% 0;
-}
+  .px-font-12 {
+    font-size: 12px;
+  }
 
-.date-picker__month-box {
-  .date-picker__header {
+  .px-font-14 {
+    font-size: 14px;
+  }
+
+  .px-font-16 {
+    font-size: 16px;
+  }
+
+  .px-line-20 {
+    line-height: 20px;
+  }
+
+  .overflow-h {
     overflow: hidden;
-    &.hide {
-      animation: fadeOutUp .3s ease-out forwards;
-    }
   }
 
-  .date-picker__header,
-  .date-picker__body{
-    padding: 10px 4.5% 0;
+  .overflow-a {
+    overflow: auto;
+  }
 
-    .selected:last-child {
-      background: #fff !important;
+  .fl {
+    float: left;
+  }
+
+  .date-picker__row-1,
+  .date-picker__day-cell{
+    width: px2vw(50);
+    height: 40px;
+    line-height: 40px;
+    padding-right: 10px;
+    text-align: center;
+  }
+
+  .date-picker__fixed-header {
+    padding: 10px 4.5% 0;
+  }
+
+  .date-picker__month-box {
+    .date-picker__header {
+      overflow: hidden;
+      &.hide {
+        animation: fadeOutUp .3s ease-out forwards;
+      }
     }
 
-    .date-picker__day-cell {
+    .date-picker__header,
+    .date-picker__body{
+      padding: 10px 4.5% 0;
 
-      margin-bottom: 20px;
-
-      &.lastCol {
-        width: px2vw(40);
-        padding-right: 0;
+      .selected:last-child {
+        background: #fff !important;
       }
 
-      &.disabled {
-        color: #959BA3;
-      }
+      .date-picker__day-cell {
 
-      &.selected {
-        color: #fff !important;
+        margin-bottom: 20px;
 
-        .date-picker__day-cell-bg {
-          border-radius: 4px;
+        &.lastCol {
+          width: px2vw(40);
+          padding-right: 0;
+        }
+
+        &.disabled {
+          color: #959BA3;
+        }
+
+        &.selected {
+          color: #fff !important;
+
+          .date-picker__day-cell-bg {
+            border-radius: 4px;
+          }
+        }
+
+        &.selected,
+        &.arranged {
+          position: relative;
+        }
+
+        .in-out-txt {
+          top: 40px;
+        }
+
+        .date-picker__day-word {
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
         }
       }
-
-      &.selected,
-      &.arranged {
-        position: relative;
-      }
-
-      .in-out-txt {
-        top: 40px;
-      }
-
-      .date-picker__day-word {
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-      }
     }
   }
-}
 
-@keyframes fadeOutUp {
-  from {
-    height: 72px;
+  @keyframes fadeOutUp {
+    from {
+      height: 72px;
+    }
+
+    to {
+      height: 0;
+    }
   }
 
-  to {
-    height: 0;
+  .fadeOutUp {
+    animation-name: fadeOutUp;
   }
-}
-
-.fadeOutUp {
-  animation-name: fadeOutUp;
-}
 </style>
