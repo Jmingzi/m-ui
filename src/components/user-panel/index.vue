@@ -64,4 +64,57 @@ export default {
   .user-info-con {
     padding: 20px 0 0 20px;
   }
+.px-margin-10
+{
+  margin:10px
+}
+.px-height-100
+{
+  height:100px
+}
+.bg-fff
+{
+  background-color:#fff
+}
+.radius-4
+{
+  border-radius:4px
+}
+.fl
+{
+  float:left
+}
+.px-margin-r15
+{
+  margin:0 15px 0 0
+}
+.overflow-h
+{
+  overflow:hidden !important
+}
+.color-fff
+{
+  color:#fff
+}
+.px-font-18
+{
+  font-size:18px !important
+}
+.px-font-16
+{
+  font-size:16px !important
+}
+.px-margin-t10
+{
+  margin:10px 0 0 0
+}
+.over-text
+{
+  overflow:hidden;text-overflow:ellipsis
+}
+.px-padding-r10
+{
+  padding:0 10px 0 0
+}
+
 </style>

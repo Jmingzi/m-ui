@@ -95,4 +95,13 @@ export default {
 </script>
 
 <style lang="scss">
+.height-100
+{
+  height:100%
+}
+.position-r
+{
+  position:relative
+}
+
 </style>

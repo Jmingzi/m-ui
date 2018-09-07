@@ -107,4 +107,36 @@ export default {
     width: 60px;
     height: 2px;
   }
+.font-0
+{
+  font-size:0 !important
+}
+.position-r
+{
+  position:relative
+}
+.bg-fff
+{
+  background-color:#fff
+}
+.position-a
+{
+  position:absolute
+}
+.bottom-0
+{
+  bottom:0
+}
+.text-center
+{
+  text-align:center
+}
+.display-ib
+{
+  display:inline-block !important
+}
+.px-line-40 {
+  line-height: 40px;
+}
+
 </style>

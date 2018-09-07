@@ -92,4 +92,50 @@ export default {
       line-height: 36px;
     }
   }
+.px-width-60{
+  width: 60px;
+}
+.px-height-60{
+  height: 60ox;
+}
+.px-line-60 {
+  line-height: 60px;
+}
+.overflow-h
+{
+  overflow:hidden !important
+}
+.position-r
+{
+  position:relative
+}
+.width-100
+{
+  width:100%
+}
+.height-100
+{
+  height:100%
+}
+.color-fff
+{
+  color:#fff
+}
+.text-center
+{
+  text-align:center
+}
+.px-font-16
+{
+  font-size:16px !important
+}
+.top-0
+{
+  top:0
+}
+.position-a
+{
+  position:absolute
+}
+
 </style>

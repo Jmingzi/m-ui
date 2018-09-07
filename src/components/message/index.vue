@@ -87,4 +87,17 @@ export default {
   .message__icon {
     padding-right: 0;
   }
+.px-padding-tb5
+{
+  padding:5px 0
+}
+.px-font-12
+{
+  font-size:12px !important
+}
+.px-margin-l10
+{
+  margin:0 0 0 10px
+}
+
 </style>

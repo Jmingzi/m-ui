@@ -5,7 +5,7 @@
       :is-link="false"
     >
       <m-switch
-        :value="true"
+        :value="false"
       />
     </m-cell>
     <p>model</p>

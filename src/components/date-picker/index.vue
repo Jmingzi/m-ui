@@ -644,4 +644,81 @@ export default {
   .fadeOutUp {
     animation-name: fadeOutUp;
   }
+.position-r
+{
+  position:relative
+}
+.height-100
+{
+  height:100%
+}
+.position-f
+{
+  position:fixed
+}
+.top-0
+{
+  top:0
+}
+.width-100
+{
+  width:100%
+}
+.z-index-10
+{
+  z-index:10
+}
+.bg-fff
+{
+  background-color:#fff
+}
+.m-bd-b
+{
+  position:relative
+}
+.text-center
+{
+  text-align:center
+}
+.px-font-16
+{
+  font-size:16px !important
+}
+.overflow-h
+{
+  overflow:hidden !important
+}
+.px-font-14
+{
+  font-size:14px !important
+}
+.fl
+{
+  float:left
+}
+.position-a
+{
+  position:absolute
+}
+.bottom-0
+{
+  bottom:0
+}
+.overflow-a
+{
+  overflow:auto !important
+}
+.px-font-12
+{
+  font-size:12px !important
+}
+.left-0
+{
+  left:0
+}
+.px-line-20
+{
+  line-height:20px
+}
+
 </style>

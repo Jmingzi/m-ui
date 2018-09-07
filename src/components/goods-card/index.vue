@@ -207,11 +207,93 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
   .goods-card__item {
     padding: 10px 10px 10px 0;
   }
   .goods-card__checkbox {
     width: 10.67vw;
   }
+.font-0
+{
+  font-size:0 !important
+}
+.ib-top
+{
+  display:inline-block;
+  vertical-align: top;
+}
+.px-font-16
+{
+  font-size:16px !important
+}
+.text-center
+{
+  text-align:center
+}
+.px-padding-tb10
+{
+  padding:10px 0
+}
+.px-font-14
+{
+  font-size:14px !important
+}
+.overflow-h
+{
+  overflow:hidden !important
+}
+.fl
+{
+  float:left
+}
+.bg-f2
+{
+  background-color:#f2f2f2 !important
+}
+.position-r
+{
+  position:relative
+}
+.position-a
+{
+  position:absolute
+}
+.width-100
+{
+  width:100%
+}
+.height-100
+{
+  height:100%
+}
+.top-0
+{
+  top:0
+}
+.left-0
+{
+  left:0
+}
+.bottom-0
+{
+  bottom:0
+}
+.color-c999
+{
+  color:#999
+}
+.px-font-12
+{
+  font-size:12px !important
+}
+.over-text
+{
+  overflow:hidden;text-overflow:ellipsis
+}
+.fr
+{
+  float:right
+}
+
 </style>

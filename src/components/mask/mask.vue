@@ -56,10 +56,35 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
   .m-mask__wrap {
     background-color: rgba(0,0,0,.59);
     z-index: 1001;
     transition: opacity .2s;
   }
+.position-f
+{
+  position:fixed
+}
+.left-0
+{
+  left:0
+}
+.top-0
+{
+  top:0
+}
+.bottom-0
+{
+  bottom:0
+}
+.width-100
+{
+  width:100%
+}
+.height-100
+{
+  height:100%
+}
+
 </style>

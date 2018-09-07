@@ -137,4 +137,37 @@ export default {
     opacity: 1;
     transition: opacity .1s;
   }
+.position-f
+{
+  position:fixed
+}
+.top-0
+{
+  top:0
+}
+.bottom-0
+{
+  bottom:0
+}
+.left-0
+{
+  left:0
+}
+.right-0
+{
+  right:0
+}
+.overflow-a
+{
+  overflow:auto !important
+}
+.touch-scroll
+{
+  -webkit-overflow-scrolling:touch
+}
+.m-bd-t
+{
+  position:relative
+}
+
 </style>

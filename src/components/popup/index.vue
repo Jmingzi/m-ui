@@ -198,4 +198,79 @@ export default {
       transform: translate3d(0, 100%, 0);
     }
   }
+.position-f
+{
+  position:fixed
+}
+.top-0
+{
+  top:0
+}
+.bottom-0
+{
+  bottom:0
+}
+.left-0
+{
+  left:0
+}
+.right-0
+{
+  right:0
+}
+.bg-fff
+{
+  background-color:#fff
+}
+.width-100
+{
+  width:100%
+}
+.position-r
+{
+  position:relative
+}
+.m-bd-b
+{
+  position:relative
+}
+.position-a
+{
+  position:absolute
+}
+.px-line-45
+{
+  line-height:45px
+}
+.text-center
+{
+  text-align:center
+}
+.color-c666
+{
+  color:#666
+}
+.px-font-16
+{
+  font-size:16px !important
+}
+.break-all
+{
+  word-break:break-all
+}
+.height-100
+{
+  height:100%
+}
+.px-font-18
+{
+  font-size:18px !important
+}
+.color-fff
+{
+  color:#fff
+}
+.overflow-a{
+  overflow: auto;
+}
 </style>

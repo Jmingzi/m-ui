@@ -47,3 +47,7 @@ export default {
     border transparent 1px solid
     border-radius 2px
 </style>
+
+<style lang="scss">
+</style>
+

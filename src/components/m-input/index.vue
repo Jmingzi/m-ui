@@ -92,3 +92,6 @@ export default {
       border-radius 2px
       padding 0 10px
 </style>
+
+<style lang="scss">
+</style>

@@ -987,4 +987,102 @@ export default {
       color: #000;
     }
   }
+.bg-f2
+{
+  background-color:#f2f2f2 !important
+}
+.text-center
+{
+  text-align:center
+}
+.color-c999
+{
+  color:#999
+}
+.px-padding-tb50
+{
+  padding:50px 0
+}
+.ib-middle
+{
+  display:inline-block
+}
+.position-a
+{
+  position:absolute
+}
+.px-right-10
+{
+  right:10px
+}
+.px-top-15
+{
+  top:15px
+}
+.m-bd
+{
+  position:relative
+}
+.px-padding-lr5
+{
+  padding:0 5px
+}
+.color-c666
+{
+  color:#666
+}
+.line-normal
+{
+  line-height:normal !important
+}
+.text-left
+{
+  text-align:left
+}
+.px-font-16
+{
+  font-size:16px !important
+}
+.bg-fff
+{
+  background-color:#fff
+}
+.m-bd-b
+{
+  position:relative
+}
+.fr
+{
+  float:right
+}
+.ib-top
+{
+  display:inline-block;
+  vertical-align: top;
+}
+.px-width-60
+{
+  width:60px
+}
+.position-r
+{
+  position:relative
+}
+.color-info
+{
+  color:#0275d8
+}
+.px-padding-10
+{
+  padding:10px
+}
+.px-margin-t10
+{
+  margin:10px 0 0 0
+}
+.font-bold
+{
+  font-weight:bold
+}
+
 </style>

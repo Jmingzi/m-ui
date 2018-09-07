@@ -116,4 +116,42 @@ export default {
   .fade-left-leave-active {
     transform: translateX(-100%);
   }
+.display-ib
+{
+  display:inline-block !important
+}
+.height-100
+{
+  height:100%
+}
+.bg-fff
+{
+  background-color:#fff
+}
+.overflow-h
+{
+  overflow:hidden !important
+}
+.font-0
+{
+  font-size:0 !important
+}
+.ib-middle
+{
+  display:inline-block;
+  vertical-align: middle;
+}
+.px-font-14
+{
+  font-size:14px !important
+}
+.overflow-a
+{
+  overflow:auto !important
+}
+.touch-scroll
+{
+  -webkit-overflow-scrolling:touch
+}
+
 </style>

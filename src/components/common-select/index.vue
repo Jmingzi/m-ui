@@ -152,4 +152,13 @@ export default {
     padding-top: 80px;
     color: #9c9c9c;
   }
+.position-r
+{
+  position:relative
+}
+.px-font-14
+{
+  font-size:14px !important
+}
+
 </style>

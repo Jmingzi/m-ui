@@ -186,4 +186,65 @@ export default {
     margin-top: 2.5px;
   }
   ::-webkit-search-cancel-button { display: none; }
+.px-height-50
+{
+  height:50px
+}
+.px-line-50
+{
+  line-height:50px
+}
+.px-padding-t10
+{
+  padding:10px 0 0 0
+}
+.px-font-14
+{
+  font-size:14px !important
+}
+.px-height-30
+{
+  height:30px
+}
+.px-line-30
+{
+  line-height:30px
+}
+.px-margin-lr15
+{
+  margin:0 15px
+}
+.color-c999
+{
+  color:#999
+}
+.position-r
+{
+  position:relative
+}
+.fr
+{
+  float:right
+}
+.px-width-50
+{
+  width:50px
+}
+.text-center
+{
+  text-align:center
+}
+.color-fff
+{
+  color:#fff
+}
+.radius-2
+{
+  border-radius:2px
+}
+.position-a
+{
+  position:absolute
+}
+
 </style>

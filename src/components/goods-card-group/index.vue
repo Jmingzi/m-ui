@@ -103,4 +103,50 @@ export default {
   .m-goods-card-group__bottom {
     line-height: 50px;
   }
+.overflow-h
+{
+  overflow:hidden !important
+}
+.px-padding-lr10
+{
+  padding:0 10px
+}
+.bg-fff
+{
+  background-color:#fff
+}
+.fr
+{
+  float:right
+}
+.font-0
+{
+  font-size:0 !important
+}
+.ib-middle
+{
+  display:inline-block;
+  vertical-align: middle;
+}
+.px-width-30
+{
+  width:30px
+}
+.px-font-14
+{
+  font-size:14px !important
+}
+.color-ccc
+{
+  color:#ccc
+}
+.px-font-12
+{
+  font-size:12px !important
+}
+.text-right
+{
+  text-align:right
+}
+
 </style>

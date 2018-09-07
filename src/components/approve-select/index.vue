@@ -113,4 +113,9 @@ export default {
     padding-top: 80px;
     color: #9c9c9c;
   }
+.color-c999
+{
+  color:#999
+}
+
 </style>

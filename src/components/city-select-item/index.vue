@@ -151,4 +151,82 @@ export default {
     color: #666666;
     z-index: 2;
   }
+.px-height-40
+{
+  height:40px
+}
+.px-line-40
+{
+  line-height:40px
+}
+.m-bd-b
+{
+  position:relative
+}
+.bg-fff
+{
+  background-color:#fff
+}
+.px-width-70
+{
+  width:70px
+}
+.over-text
+{
+  overflow:hidden;text-overflow:ellipsis
+}
+.ib-middle
+{
+  display:inline-block;
+  vertical-align: middle;
+}
+.text-center
+{
+  text-align:center
+}
+.px-width-60
+{
+  width:60px
+}
+.px-margin-lr5
+{
+  margin:0 5px
+}
+.position-a
+{
+  position:absolute
+}
+.px-top-40
+{
+  top:40px
+}
+.bottom-0
+{
+  bottom:0
+}
+.overflow-a
+{
+  overflow:auto !important
+}
+.touch-scroll
+{
+  -webkit-overflow-scrolling:touch
+}
+.width-100
+{
+  width:100%
+}
+.color-c999
+{
+  color:#999
+}
+.px-padding-t30
+{
+  padding:30px 0 0 0
+}
+.px-padding-lr10
+{
+  padding:0 10px
+}
+
 </style>
