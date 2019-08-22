@@ -165,7 +165,7 @@ vw(px)
     display flex
     // align-items top
     flex-direction column
-    padding 0 vw(15)
+    padding vw(10) vw(15)
     &__wrap
       display flex
       flex-wrap wrap
@@ -178,15 +178,17 @@ vw(px)
       align-items center
       justify-content center
       height 30px
-      margin 5px
+      margin 10px 0 0 10px
       border 1px #ccc solid
       border-radius 2px
       font-size 12px
+      &:first-child
+        margin-left 0
     &__name
       display: flex
       align-items: center
-      width vw(30)
-      height 40px
+      // width vw(30)
+      // height 40px
       color #959BA3
       font-size 14px
     &__reason
