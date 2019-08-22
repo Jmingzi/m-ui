@@ -163,13 +163,14 @@ vw(px)
 .sku
   .sku-attr
     display flex
-    align-items top
-    padding 0 0 0 vw(15)
+    // align-items top
+    flex-direction column
+    padding 0 vw(15)
     &__wrap
       display flex
       flex-wrap wrap
-      margin-left vw(5)
-      width vw(310)
+      // margin-left vw(5)
+      // width vw(310)
     &__item
       position relative
       padding 0 vw(15)

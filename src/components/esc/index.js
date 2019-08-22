@@ -45,12 +45,16 @@ export default {
 
   userEditUrl(cbName, color = '2277EE', travelType = 0, externalId, scenes = 1) {
     return `${escUrl}#/occupant-add?color=${color}&` +
-    `scenes=1&travelType=${travelType}&` +
+    `&travelType=${travelType}&` +
     `externalId=${externalId}&callback=${cbName}&scenes=${scenes}`
   },
 
   cityUrl(cbName, cityName, bizType = this.bizType) {
     return `${escUrl}#/city-choose?locateCityName=${encodeURIComponent(cityName)}&callback=${cbName}&bizType=${bizType}`
+  },
+
+  orderListUrl(type = 1) {
+    return `${escUrl}#/order-list-travel?type=${type}`
   },
 
   travelStandardUrl(showType = 3) {
