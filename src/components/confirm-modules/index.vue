@@ -471,7 +471,7 @@ export default {
     // 采购类型的支付方式依旧支持个人垫付
     // 其它只有因公因私 和 个人企业支付
     isPurchase() {
-      return [22, 129, 139].indexOf(Number(this.bizType)) > -1
+      return [22, 129, 139, 190].indexOf(Number(this.bizType)) > -1
     },
 
     // 因公消费
