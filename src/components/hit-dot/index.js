@@ -1,6 +1,12 @@
 const isIOS = /iPhone/.test(navigator.userAgent)
 const online = /\.com/.test(location.origin)
-const base = online ? 'https://admin.jituancaiyun.com' : 'http://admin.jituancaiyun.net'
+const base = online 
+  ? (
+      window._ESC_APP_CONFIG
+        ? window._ESC_APP_CONFIG.apiHost.replace('api', 'admin')
+        : 'https://admin.jituancaiyun.com'
+    ) 
+  : 'http://admin.jituancaiyun.net'
 
 const defaultOptions = {
   moduleId: 0,
